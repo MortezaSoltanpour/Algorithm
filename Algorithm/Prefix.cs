@@ -32,11 +32,11 @@ namespace Algorithm
                 for (int j = 0; j <= maxLength; j++)
                     if (listBox1.Items[i].ToString().Length >= j)
                     {
-                        var sa = GetFirstMostIterate(j, prefix);
-                        if (sa.Any())
+                        var mortIterate = GetIterateWithPrefix(j, prefix);
+                        if (mortIterate.Any())
                         {
-                            eachPrefix.Add(prefix + sa.First().Key, sa.First().Value);
-                            prefix += sa.First().Key;
+                            eachPrefix.Add(prefix + mortIterate.First().Key, mortIterate.First().Value);
+                            prefix += mortIterate.First().Key;
                         }
                     }
 
@@ -49,7 +49,6 @@ namespace Algorithm
             lblResult.Text = $"prefix : {result}";
         }
 
-
         int GetMaxLength()
         {
             int max = 0;
@@ -59,7 +58,7 @@ namespace Algorithm
             return max;
         }
 
-        Dictionary<string, int> GetFirstMostIterate(int position, string prefix)
+        Dictionary<string, int> GetIterateWithPrefix(int position, string prefix)
         {
             List<string> charArray = new List<string>();
             for (int i = 0; i < listBox1.Items.Count; i++)
@@ -84,6 +83,15 @@ namespace Algorithm
                         maxItems.Add(item.Key, item.Value);
             }
             return maxItems;
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnAdd.PerformClick();
+                textBox1.Focus();
+            }
         }
     }
 }

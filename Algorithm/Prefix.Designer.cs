@@ -43,6 +43,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(100, 23);
             textBox1.TabIndex = 10;
+            textBox1.KeyDown += textBox1_KeyDown;
             // 
             // listBox1
             // 
